@@ -1,11 +1,11 @@
 # Install dependencies
-pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+conda run -n diffusion pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 
 git clone https://github.com/openai/CLIP
 git clone https://github.com/crowsonkb/guided-diffusion
-pip install -e ./CLIP
-pip install -e ./guided-diffusion
-pip install lpips matplotlib IPython requests
+conda run -n diffusion pip install -e ./CLIP
+conda run -n diffusion pip install -e ./guided-diffusion
+conda run -n diffusion pip install lpips matplotlib IPython requests
 
 # Download the diffusion models
 if ! [ -f ./512x512_diffusion_uncond_finetune_008100.pt ]; then
