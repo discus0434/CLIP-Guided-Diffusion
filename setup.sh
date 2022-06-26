@@ -2,16 +2,14 @@
 conda run -n diffusion pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 
 git clone https://github.com/openai/CLIP
-git clone https://github.com/crowsonkb/guided-diffusion
+git clone https://github.com/kostarion/guided-diffusion
+git clone https://github.com/assafshocher/ResizeRight.git
+git clone https://github.com/MSFTserver/pytorch3d-lite.git
+git clone https://github.com/isl-org/MiDaS.git
 conda run -n diffusion pip install -e ./CLIP
 conda run -n diffusion pip install -e ./guided-diffusion
-conda run -n diffusion pip install lpips matplotlib IPython requests
 
-# Download the diffusion models
-if ! [ -f ./512x512_diffusion_uncond_finetune_008100.pt ]; then
-    curl -OL --http1.1 'https://v-diffusion.s3.us-west-2.amazonaws.com/512x512_diffusion_uncond_finetune_008100.pt'  
-fi
+conda run -n diffusion pip install lpips IPython requests timm einops omegaconf
+conda install -y jupyter opencv pandas numpy matplotlib
 
-if ! [ -f ./256x256_diffusion_uncond.pt ]; then
-    curl -OL 'https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt'
-fi
+wget https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt -P models
